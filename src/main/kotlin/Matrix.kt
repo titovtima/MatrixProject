@@ -111,6 +111,10 @@ open class Matrix (val rows: Int,
         res = res.dropLast(2)
         return res
     }
+
+    fun transpose() = Matrix(Array(cols){ i -> Array(rows){ j -> this[j, i] } })
+
+    fun toSquareMatrix() = SquareMatrix(values)
 }
 
 open class SquareMatrix(values: Array<Array<Double>>) : Matrix(values) {
@@ -121,7 +125,7 @@ open class SquareMatrix(values: Array<Array<Double>>) : Matrix(values) {
     }
 }
 
-class UnitMatrix(size: Int) : Matrix(Array(size) { i -> Array(size) { j -> if (i == j) 1.0 else 0.0 } }) {
+class UnitMatrix(size: Int) : SquareMatrix(Array(size) { i -> Array(size) { j -> if (i == j) 1.0 else 0.0 } }) {
 }
 
 
