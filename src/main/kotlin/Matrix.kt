@@ -31,6 +31,16 @@ class Vector (val values: Array<Double>) {
         for (i in 0 until length) res += "${this[i]}, "
         return "(" + res.dropLast(2) + ")"
     }
+//
+//    fun transposeAndMultiply(A: Matrix) : Vector {
+//        if (length != A.rows) throw MatrixException("Incorrect vector size in multiplication")
+//        return Vector(Array(A.cols){ i ->
+//            var res = 0.0
+//            for (j in 0 until length)
+//                res += this[j] * A[j, i]
+//            res
+//        })
+//    }
 
     fun toMatrix() = Matrix(Array(length){ i -> Array(1) { this[i] } })
 }
