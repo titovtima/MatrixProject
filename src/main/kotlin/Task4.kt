@@ -15,9 +15,9 @@ fun qr_decomposition(A: SquareMatrix) : Pair<SquareMatrix, SquareMatrix> {
                 val G = GivensMatrix(R.size, i, j, c, s)
                 Q = multiplyGivensByMatrix(G, Q)
                 R = multiplyGivensByMatrix(G, R)
-                println("$j $i")
-                println(Q)
-                println(R)
+//                println("$j $i")
+//                println(Q)
+//                println(R)
             }
         }
     }
@@ -26,14 +26,16 @@ fun qr_decomposition(A: SquareMatrix) : Pair<SquareMatrix, SquareMatrix> {
 }
 
 fun main() {
+//    Input data:
     val A = SquareMatrix(arrayOf(arrayOf(1.0, 2.0, 4.0), arrayOf(3.0, 3.0, 2.0), arrayOf(4.0, 1.0, 3.0)))
 
     val p = qr_decomposition(A)
     val Q = p.first
     val R = p.second
+    println("Матрица Q:")
     println(Q)
-    println()
+    println("Матрица R:")
     println(R)
-    println()
+    println("Матрица Q*R:")
     println(Q * R)
 }
