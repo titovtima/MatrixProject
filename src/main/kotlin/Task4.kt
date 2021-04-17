@@ -3,7 +3,7 @@ import kotlin.math.sqrt
 
 val eps = 1e-5
 
-fun qr_decomposition(A: SquareMatrix) : Pair<SquareMatrix, SquareMatrix> {
+fun qr_decomposition_by_Givens(A: SquareMatrix) : Pair<SquareMatrix, SquareMatrix> {
     var Q: SquareMatrix = UnitMatrix(A.size)
     var R = A
 
@@ -29,7 +29,7 @@ fun main() {
 //    Input data:
     val A = SquareMatrix(arrayOf(arrayOf(1.0, 2.0, 4.0), arrayOf(3.0, 3.0, 2.0), arrayOf(4.0, 1.0, 3.0)))
 
-    val p = qr_decomposition(A)
+    val p = qr_decomposition_by_Givens(A)
     val Q = p.first
     val R = p.second
     println("Матрица Q:")

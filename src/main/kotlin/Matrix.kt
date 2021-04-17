@@ -122,9 +122,38 @@ open class Matrix (val rows: Int,
         return res
     }
 
+//    override fun toString(): String {
+//        var res = "["
+//        for (i in 0 until rows) {
+//            res += "["
+//            for (j in 0 until cols)
+//                res += "${this[i, j]},"
+//            res = res.dropLast(1)
+//            res += "],"
+//        }
+//        res = res.dropLast(1)
+//        return "$res]"
+//    }
+
     fun transpose() = Matrix(Array(cols){ i -> Array(rows){ j -> this[j, i] } })
 
     fun toSquareMatrix() = SquareMatrix(values)
+
+    fun takeMinor(takeRows: Array<Int>, takeCols: Array<Int>) = Matrix(Array(takeRows.size){ i -> Array(takeCols.size){ j ->
+        this[takeRows[i], takeCols[j]]
+    } })
+
+    fun setMinor(setRows: Array<Int>, setCols: Array<Int>, M: Matrix): Matrix {
+        val res = this
+        for (i in setRows.indices)
+            for (j in setCols.indices)
+                res[setRows[i], setCols[j]] = M[i, j]
+        return res
+    }
+
+    fun takeRow(i: Int) = Vector(Array(cols){ j -> this[i, j] })
+
+    fun takeColumn(i: Int) = Vector(Array(rows){ j -> this[j, i] })
 }
 
 open class SquareMatrix(values: Array<Array<Double>>) : Matrix(values) {
@@ -139,6 +168,3 @@ class UnitMatrix(size: Int) : SquareMatrix(Array(size) { i -> Array(size) { j ->
 }
 
 
-
-//    val A = SquareMatrix(arrayOf(arrayOf(0.7, 0.7), arrayOf(0.57, 0.89)))
-//    val b = Vector(arrayOf(0.43, 0.53))
